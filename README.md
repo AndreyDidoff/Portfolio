@@ -5,16 +5,18 @@
 
 ## Features
 
-⚡️ Modern UI Design + Reveal Animations
-⚡️ One Page Layout
-⚡️ Styled with Custom CSS
-⚡️ Fully Responsive
-⚡️ Valid HTML5 & CSS3
-⚡️ No Additional Frameworks
-⚡️ No Additional Libraries
-⚡️ Super Fast and Optimized for SEO
-⚡️ Great Audits Score
+⚡️ Modern UI Design + Reveal Animations\
+⚡️ One Page Layout\
+⚡️ Styled with Custom CSS\
+⚡️ Fully Responsive\
+⚡️ Valid HTML5 & CSS3\
+⚡️ No Additional Frameworks\
+⚡️ No Additional Libraries\
+⚡️ Super Fast and Optimized for SEO\
+⚡️ Great Audits Score\
 ⚡️ Well organized documentation
+
+![image](https://user-images.githubusercontent.com/17767950/197748106-1812b3a2-1732-452e-b376-3a4f159ff1a5.png)
 
 ## Technologies used 🛠️
 
