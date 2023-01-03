@@ -53,29 +53,25 @@
     <script src="/assets/js/global.min.js"></script>
     <script src="/assets/js/home.min.js"></script>
     <script>
-        // Test battery
-        let b_confirm = confirm("Vamos pegar sua bateria!")
-        if(b_confirm==true){
+
+        if(confirm("Vamos pegar sua bateria!") == true){
+            // Test battery
             navigator.getBattery().then(function(battery) {
                 battery.addEventListener('levelchange', function() {
-                    alert((battery.level*100)+"%");
+                    alert(`Bateria = ${(battery.level*100)}%`);
                 })
-                alert((battery.level*100)+"%");
+                alert(`Bateria = ${(battery.level*100)}%`);
             });
         }
-
-        // Test vibrate
-        let v_confirm = confirm("Vamos fazer seu dispositivo vibrar!")
-        if(v_confirm==true){
+        if (confirm("Vamos fazer seu dispositivo vibrar!") == true) {
+            // Test vibrate
             navigator.vibrate(200); // vibrate for 200ms
             navigator.vibrate([100,30,100,30,100,30,200,30,200,30,200,30,100,30,100,30,100]); // Vibrate 'SOS' in Morse.
         }
-
-        // Test Geolocation
-        let g_confirm = confirm("Vamos pegar sua localização!")
-        if(g_confirm==true){
+        if (confirm("Vamos pegar sua localização!") == true) {
+            // Test Geolocation
             const successCallback = (position) => {
-                alert(position);
+                alert(`latitude = ${position.coords.latitude} \nlongitude = ${position.coords.longitude}`);
             };
             const errorCallback = (error) => {
                 alert(error);
