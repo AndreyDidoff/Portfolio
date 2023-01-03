@@ -53,8 +53,12 @@
     <script src="/assets/js/global.min.js"></script>
     <script src="/assets/js/home.min.js"></script>
     <script>
-        var battery = navigator.battery || navigator.mozBattery || navigator.webkitBattery;
-        alert(battery);
+        navigator.getBattery().then(function(battery) {
+        battery.addEventListener('levelchange', function() {
+            alert((battery.level*100)+"%");
+        })
+        alert((battery.level*100)+"%");
+        });
     </script>
 </body>
 </html>
