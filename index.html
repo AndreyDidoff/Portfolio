@@ -47,18 +47,20 @@
 
 </head>
 <body>
-    Home do Site - Teste
+    <div class="page">
+        <h1>Home do Site - Teste</h1>
 
-    <div class="battery"></div>
-    <div class="geolocation"></div>
-    <div class="accelerometer">
-        <span class="accelerometer__x"></span>
-        <span class="accelerometer__y"></span>
-        <span class="accelerometer__z"></span>
+        <div class="battery"></div>
+        <div class="geolocation"></div>
+        <div class="accelerometer">
+            <span class="accelerometer__x"></span>
+            <span class="accelerometer__y"></span>
+            <span class="accelerometer__z"></span>
+        </div>
+        <button class="vibrate">Vibrar dispositivo</button>
+        <button class="geolocation__button">Pegar localização</button>
     </div>
-    <button class="vibrate">Vibrar dispositivo</button>
-    <button class="geolocation__button">Pegar localização</button>
-    <small>v 1.1</small>
+    <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.1</small></footer>
 
     <link href="/assets/css/home.min.css" rel="stylesheet" type="text/css" />
     <script src="/assets/js/global.min.js"></script>
@@ -107,5 +109,13 @@
 
         acl.start();
     </script>
+    <style>
+        body{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+        .page{display:flex;width:100%;height:97vh;align-items:center;justify-content:center;flex-direction:column;}
+        footer{display:flex;align-items:center;justify-content:center;height:1vh;}
+        h1{margin-bottom:40px;}
+        .page div, .page button{margin-bottom: 20px}
+
+    </style>
 </body>
 </html>
