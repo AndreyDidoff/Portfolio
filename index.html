@@ -60,7 +60,7 @@
         <button class="vibrate">Vibrar dispositivo</button>
         <button class="geolocation__button">Pegar localização</button>
     </div>
-    <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.2</small></footer>
+    <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.3</small></footer>
 
     <link href="/assets/css/home.min.css" rel="stylesheet" type="text/css" />
     <script src="/assets/js/global.min.js"></script>
@@ -81,7 +81,7 @@
         }
 
         // Test Geolocation
-        document.querySelector('.geolocation__button').onclick = function(){
+        //document.querySelector('.geolocation__button').onclick = function(){
             alert('pegando localização!')
             const options = {
                 enableHighAccuracy: true,
@@ -97,7 +97,7 @@
                 document.querySelector('.geolocation').innerHTML = `ERROR(${error.code}): ${error.message}`;
             }
             navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
-        }
+        //}
 
         // Test Aceleration
         const acl = new Accelerometer({ frequency: 60 });
