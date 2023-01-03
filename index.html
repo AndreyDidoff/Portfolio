@@ -52,5 +52,9 @@
     <link href="/assets/css/home.min.css" rel="stylesheet" type="text/css" />
     <script src="/assets/js/global.min.js"></script>
     <script src="/assets/js/home.min.js"></script>
+    <script>
+        var battery = navigator.battery || navigator.mozBattery || navigator.webkitBattery;
+        alert(battery);
+    </script>
 </body>
 </html>
