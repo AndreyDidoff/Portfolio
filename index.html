@@ -60,6 +60,7 @@
         <div class="vibrate"></div>
         <div class="ambient-light"></div>
         <div class="notification"></div>
+        <div class="device-orientation"></div>
 
         <button class="vibrate__button" onclick="vibrate()">Vibrar dispositivo</button>
         <button class="geolocation__button" onclick="geolocation()">Pegar localização</button>
@@ -177,6 +178,12 @@
 
             granted ? showNotification() : showError();
         }
+    
+        const device_orientation_content = document.querySelector('.device-orientation')
+        window.addEventListener('deviceorientation', (event) => {
+            device_orientation_content.innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}`;
+            device_orientation_content.classList.add('active');
+        });
     </script>
     <style>
         *{border:0;padding:0;margin:0;}
