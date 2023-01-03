@@ -60,7 +60,7 @@
         <button class="vibrate">Vibrar dispositivo</button>
         <button class="geolocation__button">Pegar localização</button>
     </div>
-    <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.3</small></footer>
+    <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.4</small></footer>
 
     <link href="/assets/css/home.min.css" rel="stylesheet" type="text/css" />
     <script src="/assets/js/global.min.js"></script>
@@ -81,33 +81,24 @@
         }
 
         // Test Geolocation
-        var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
+        document.querySelector('.geolocation__button').onclick = function(){
+            alert('pegando localização!')
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+            const successCallback = (position) => {
+                alert('localização = '+position.coords)
+                const crd = position.coords;
+                document.querySelector('.geolocation').innerHTML = `Latitude : ${crd.latitude}<br>Longitude: ${crd.longitude}<br>More or less ${crd.accuracy} meters.`;
+            }
+            const errorCallback = (error) => {
+                document.querySelector('.geolocation').innerHTML = `ERROR(${error.code}): ${error.message}`;
+            }
+            navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+        }
 
-function log(data) {
-  const tag = document.createElement('p');
-  tag.textContent = data;
-  document.body.appendChild(tag);
-}
-
-function success(pos) {
-  var crd = pos.coords;
-  console.log('Successfully determined a user position:', crd);
-
-  log('Your current position is:');
-  log(`Latitude : ${crd.latitude}`);
-  log(`Longitude: ${crd.longitude}`);
-  log(`More or less ${crd.accuracy} meters.`);
-}
-
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-
-navigator.geolocation.getCurrentPosition(success, error, options);
         // Test Aceleration
         const acl = new Accelerometer({ frequency: 60 });
         acl.addEventListener("reading", () => {
