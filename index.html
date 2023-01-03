@@ -197,12 +197,12 @@
 
         const device_connection_content = document.querySelector('.device-connection')
         function updateConnectionStatus() {
-            device_connection_content.querySelector('text').innerHTML = `Connection type changed from ${type} to ${navigator.connection.effectiveType}`;
+            device_connection_content.querySelector('.text').innerHTML = `Connection type changed from ${type} to ${navigator.connection.effectiveType}`;
             type = navigator.connection.effectiveType;
-            device_connection_content.querySelector('downlink').innerHTML = `Downlink = ${navigator.connection.downlink}`;
-            device_connection_content.querySelector('effectiveType').innerHTML = `effectiveType = ${navigator.connection.effectiveType}`;
-            device_connection_content.querySelector('rtt').innerHTML = `rtt = ${navigator.connection.rtt}`;
-            device_connection_content.querySelector('saveData').innerHTML = `saveData = ${navigator.connection.saveData}`;
+            device_connection_content.querySelector('.downlink').innerHTML = `Downlink = ${navigator.connection.downlink}`;
+            device_connection_content.querySelector('.effectiveType').innerHTML = `effectiveType = ${navigator.connection.effectiveType}`;
+            device_connection_content.querySelector('.rtt').innerHTML = `rtt = ${navigator.connection.rtt}`;
+            device_connection_content.querySelector('.saveData').innerHTML = `saveData = ${navigator.connection.saveData}`;
             device_connection_content.classList.add('active');
         }
         updateConnectionStatus();
