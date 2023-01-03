@@ -94,7 +94,7 @@
                 document.querySelector('.geolocation').innerHTML = `Latitude : ${crd.latitude}<br>Longitude: ${crd.longitude}<br>More or less ${crd.accuracy} meters.`;
             }
             const errorCallback = (error) => {
-                console.log(`ERROR(${error.code}): ${error.message}`);
+                document.querySelector('.geolocation').innerHTML = `ERROR(${error.code}): ${error.message}`;
             }
             navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
         }
