@@ -49,35 +49,54 @@
 <body>
     Home do Site - Teste
 
+    <div class="battery"></div>
+    <div class="geolocation"></div>
+    <div class="accelerometer">
+        <span class="accelerometer__x"></span>
+        <span class="accelerometer__y"></span>
+        <span class="accelerometer__z"></span>
+    </div>
+    <button class="vibrate">Vibrar dispositivo</button>
+    <button class="geolocation__button">Pegar localização</button>
+
     <link href="/assets/css/home.min.css" rel="stylesheet" type="text/css" />
     <script src="/assets/js/global.min.js"></script>
     <script src="/assets/js/home.min.js"></script>
     <script>
+        // Test battery
+        navigator.getBattery().then(function(battery) {
+            battery.addEventListener('levelchange', function() {
+                document.querySelector('.battery').innerHTML(`Você está com ${(battery.level*100)}% de bateria!`);
+            })
+            document.querySelector('.battery').innerHTML(`Você está com ${(battery.level*100)}% de bateria!`);
+        });
 
-        if(confirm("Vamos pegar sua bateria!") == true){
-            // Test battery
-            navigator.getBattery().then(function(battery) {
-                battery.addEventListener('levelchange', function() {
-                    alert(`Bateria = ${(battery.level*100)}%`);
-                })
-                alert(`Bateria = ${(battery.level*100)}%`);
-            });
-        }
-        if (confirm("Vamos fazer seu dispositivo vibrar!") == true) {
-            // Test vibrate
+        // Test vibrate
+        document.querySelector('.vibrate').onclick = function(){
             navigator.vibrate(200); // vibrate for 200ms
             navigator.vibrate([100,30,100,30,100,30,200,30,200,30,200,30,100,30,100,30,100]); // Vibrate 'SOS' in Morse.
         }
-        if (confirm("Vamos pegar sua localização!") == true) {
-            // Test Geolocation
+
+        // Test Geolocation
+        document.querySelector('.geolocation__button').onclick = function(){
             const successCallback = (position) => {
-                alert(`latitude = ${position.coords.latitude} \nlongitude = ${position.coords.longitude}`);
+                document.querySelector('.battery').innerHTML(`latitude = ${position.coords.latitude} <br>longitude = ${position.coords.longitude}`);
             };
             const errorCallback = (error) => {
-                alert(error);
+                console.log(error);
             };
             navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
         }
+
+        // Test Aceleration
+        const acl = new Accelerometer({ frequency: 60 });
+        acl.addEventListener("reading", () => {
+            document.querySelector('.accelerometer__x').innerHTML(`Aceleração no eixo X é ${acl.x}`);
+            document.querySelector('.accelerometer__y').innerHTML(`Aceleração no eixo Y é ${acl.y}`);
+            document.querySelector('.accelerometer__z').innerHTML(`Aceleração no eixo Z é ${acl.z}`);
+        });
+
+        acl.start();
     </script>
 </body>
 </html>
