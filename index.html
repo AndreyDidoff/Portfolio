@@ -107,7 +107,7 @@
         }
 
         // Test Aceleration
-        const acl = new Accelerometer({ frequency: 500 });
+        const acl = new Accelerometer({ frequency: 60 });
         acl.addEventListener("reading", () => {
             document.querySelector('.accelerometer').classList.add('active');
             document.querySelector('.accelerometer__x').innerHTML = `Aceleração no eixo X é ${acl.x}`;
