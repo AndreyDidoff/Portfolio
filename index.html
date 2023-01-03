@@ -59,10 +59,13 @@
         </div>
         <div class="vibrate"></div>
         <div class="ambient-light"></div>
+        <div class="notification"></div>
 
         <button class="vibrate__button" onclick="vibrate()">Vibrar dispositivo</button>
         <button class="geolocation__button" onclick="geolocation()">Pegar localização</button>
         <button class="ambient-light__button" onclick="ambient_light()">Pegar iluminação</button>
+        <button class="notification__button" onclick="notification()">Abrir Notificação</button>
+
     </div>
     <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.6.2</small></footer>
 
@@ -135,9 +138,49 @@
 
                 let EV = Math.round(Math.log2((als.illuminance * ISO) / C));
                 ambient_light_content.innerHTML = `Exposure Value (EV) is: ${EV}`;
+                ambient_light_content.classList.add('active');
             });
 
             als.start();
+        }
+
+        let granted = null;
+
+        async function notification(){
+            if(granted === null){
+                if (await Notification.permission === 'granted') {
+                    granted = true;
+                } else if (await Notification.permission !== 'denied') {
+                    let permission = await Notification.requestPermission();
+                    granted = permission === 'granted' ? true : false;
+                }
+            }
+
+            async function showNotification(){
+                setTimeout(() => {
+                    console.log('Send Notification')
+                    // create a new notification
+                    const notification = new Notification('JavaScript Notification API', {
+                        body: 'This is a JavaScript Notification API demo'
+                    });
+                    console.log('Set Timeout')
+                    
+                    // close the notification after 10 seconds
+                    setTimeout(() => {
+                        notification.close();
+                    }, 10 * 1000);
+                }, 10 * 1000)
+                
+
+            }
+
+            const showError = () => {
+                const notification_content = document.querySelector('.notification');
+                notification_content.innerHTML = 'You blocked the notifications';
+                notification_content.classList.add('active');
+            }
+
+            granted ? showNotification() : showError();
         }
     </script>
     <style>
