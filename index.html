@@ -79,13 +79,19 @@
 
         // Test Geolocation
         document.querySelector('.geolocation__button').onclick = function(){
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
             const successCallback = (position) => {
-                document.querySelector('.geolocation').innerHTML = `latitude = ${position.coords.latitude} <br>longitude = ${position.coords.longitude}`;
-            };
+                const crd = position.coords;
+                document.querySelector('.geolocation').innerHTML = `Latitude : ${crd.latitude}<br>Longitude: ${crd.longitude}<br>More or less ${crd.accuracy} meters.`;
+            }
             const errorCallback = (error) => {
-                console.log(error);
-            };
-            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+                console.log(`ERROR(${error.code}): ${error.message}`);
+            }
+            navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
         }
 
         // Test Aceleration
