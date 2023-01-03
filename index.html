@@ -58,8 +58,11 @@
             <span class="accelerometer__z"></span>
         </div>
         <div class="vibrate"></div>
+        <div class="ambient-light"></div>
+
         <button class="vibrate__button" onclick="vibrate()">Vibrar dispositivo</button>
         <button class="geolocation__button" onclick="geolocation()">Pegar localização</button>
+        <button class="ambient-light__button" onclick="ambient_light()">Pegar localização</button>
     </div>
     <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.5.0</small></footer>
 
@@ -116,6 +119,33 @@
         });
 
         acl.start();
+
+        // Teste ambient-light-sensor
+        function ambient_light(){
+            const ambient_light_content = document.querySelector('.ambient-light')
+
+            navigator.permissions.query({ name: 'ambient-light-sensor' }).then(result => {
+                if (result.state === 'denied') {
+                    ambient_light_content.innerHTML = 'Permission to use ambient light sensor is denied.';
+                    return;
+                }
+
+                const als = new AmbientLightSensor({frequency: 20});
+                als.addEventListener('activate', () => ambient_light_content.innerHTML = 'Ready to measure EV.');
+                als.addEventListener('error', event => ambient_light_content.innerHTML = `Error: ${event.error.name}`);
+                als.addEventListener('reading', () => {
+                    // Defaut ISO value.
+                    const ISO = 100;
+                    // Incident-light calibration constant.
+                    const C = 250;
+
+                    let EV = Math.round(Math.log2((als.illuminance * ISO) / C));
+                    ambient_light_content.innerHTML = `Exposure Value (EV) is: ${EV}`;
+                });
+
+                als.start();
+            });
+        }
     </script>
     <style>
         *{border:0;padding:0;margin:0;}
