@@ -58,7 +58,7 @@
             <span class="accelerometer__z"></span>
         </div>
         <div class="vibrate"></div>
-        <button class="vibrate__button">Vibrar dispositivo</button>
+        <button class="vibrate__button" onclick="vibrate()">Vibrar dispositivo</button>
         <button class="geolocation__button">Pegar localização</button>
     </div>
     <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.5.0</small></footer>
@@ -78,7 +78,7 @@
         });
 
         // Test vibrate
-        document.querySelector('.vibrate__button').onclick = function(){
+        function vibrate(){
             const vibrate_content = document.querySelector('.vibrate')
             vibrate_content.innerHTML = `Vibrou!`;
             vibrate_content.classList.add('active');
