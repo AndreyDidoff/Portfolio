@@ -57,6 +57,7 @@
             <span class="accelerometer__y"></span>
             <span class="accelerometer__z"></span>
         </div>
+        <div class="vibrate"></div>
         <button class="vibrate">Vibrar dispositivo</button>
         <button class="geolocation__button">Pegar localização</button>
     </div>
@@ -70,12 +71,14 @@
         navigator.getBattery().then(function(battery) {
             battery.addEventListener('levelchange', function() {
                 document.querySelector('.battery').innerHTML = `Você está com ${(battery.level*100)}% de bateria!`;
+                
             })
             document.querySelector('.battery').innerHTML = `Você está com ${(battery.level*100)}% de bateria!`;
         });
 
         // Test vibrate
         document.querySelector('.vibrate').onclick = function(){
+            document.querySelector('.vibrate').innerHTML = `Vibrou!`;
             navigator.vibrate(200); // vibrate for 200ms
             navigator.vibrate([100,30,100,30,100,30,200,30,200,30,200,30,100,30,100,30,100]); // Vibrate 'SOS' in Morse.
         }
