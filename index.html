@@ -156,22 +156,17 @@
                 }
             }
 
-            async function showNotification(){
-                setTimeout(() => {
-                    console.log('Send Notification')
-                    // create a new notification
-                    const notification = new Notification('JavaScript Notification API', {
-                        body: 'This is a JavaScript Notification API demo'
-                    });
-                    console.log('Set Timeout')
-                    
-                    // close the notification after 10 seconds
-                    setTimeout(() => {
-                        notification.close();
-                    }, 10 * 1000);
-                }, 10 * 1000)
+            const showNotification = () => {
+                // create a new notification
+                const notification = new Notification('JavaScript Notification API', {
+                    body: 'This is a JavaScript Notification API demo',
+                    vibrate: true
+                });
                 
-
+                // close the notification after 10 seconds
+                setTimeout(() => {
+                    notification.close();
+                }, 10 * 1000);
             }
 
             const showError = () => {
