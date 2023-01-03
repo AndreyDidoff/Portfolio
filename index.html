@@ -61,6 +61,13 @@
         <div class="ambient-light"></div>
         <div class="notification"></div>
         <div class="device-orientation"></div>
+        <div class="device-connection">
+            <div class="text"></div>
+            <div class="downlink"></div>
+            <div class="effectiveType"></div>
+            <div class="rtt"></div>
+            <div class="saveData"></div>
+        </div>
 
         <button class="vibrate__button" onclick="vibrate()">Vibrar dispositivo</button>
         <button class="geolocation__button" onclick="geolocation()">Pegar localização</button>
@@ -184,6 +191,23 @@
             device_orientation_content.innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}`;
             device_orientation_content.classList.add('active');
         });
+
+        let type = navigator.connection.effectiveType;
+
+
+        const device_connection_content = document.querySelector('.device-connection')
+        function updateConnectionStatus() {
+            device_connection_content.children('text').innerHTML = `Connection type changed from ${type} to ${navigator.connection.effectiveType}`;
+            type = navigator.connection.effectiveType;
+            device_connection_content.children('downlink').innerHTML = `Downlink = ${navigator.connection.downlink}`;
+            device_connection_content.children('effectiveType').innerHTML = `effectiveType = ${navigator.connection.effectiveType}`;
+            device_connection_content.children('rtt').innerHTML = `rtt = ${navigator.connection.rtt}`;
+            device_connection_content.children('saveData').innerHTML = `saveData = ${navigator.connection.saveData}`;
+            device_connection_content.classList.add('active');
+        }
+        updateConnectionStatus();
+        navigator.connection.addEventListener('change', updateConnectionStatus);
+
     </script>
     <style>
         *{border:0;padding:0;margin:0;}
