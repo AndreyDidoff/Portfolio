@@ -59,7 +59,7 @@
         </div>
         <div class="vibrate"></div>
         <button class="vibrate__button" onclick="vibrate()">Vibrar dispositivo</button>
-        <button class="geolocation__button">Pegar localização</button>
+        <button class="geolocation__button" onclick="geolocation()">Pegar localização</button>
     </div>
     <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.5.0</small></footer>
 
@@ -87,7 +87,7 @@
         }
 
         // Test Geolocation
-        document.querySelector('.geolocation__button').onclick = function(){
+        function geolocation(){
             const options = {
                 enableHighAccuracy: true,
                 timeout: 5000,
