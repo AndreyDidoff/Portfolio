@@ -123,7 +123,7 @@
 
         acl.start();
 
-        // Teste ambient-light-sensor
+        // Test ambient-light-sensor
         function ambient_light(){
             const ambient_light_content = document.querySelector('.ambient-light')
 
@@ -144,8 +144,8 @@
             als.start();
         }
 
+        // Test notification
         let granted = null;
-
         async function notification(){
             if(granted === null){
                 if (await Notification.permission === 'granted') {
