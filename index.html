@@ -89,7 +89,7 @@
             border-radius: 20px;
             background: linear-gradient(0deg, #000, #262626);
         }
-        .card-dark::before{
+        .card-dark:before, .card-dark:after{
             border-radius: 20px;
         }
         
@@ -133,7 +133,6 @@
             height: calc(100% + 4px);
             z-index: -1;
             animation: rainbow 20s linear infinite;
-            overflow: hidden;
         }
         .shadow-rainbow:after {
             filter: blur(20px);
