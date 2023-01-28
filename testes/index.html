@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+    <title>Home | Andrey Didoff - Front-End Engineer</title>
+    <meta name="description" content="I develop unique and functional digital products and websites. I have been working since 2010 in the development and design area as a technical leader and freelance web designer. I have great knowledge in VUE, React, JavaScript, Tailwind, CSS3/Sass, HTML5, PHP, Laravel, SOAP and REST.">
+    <meta name="keywords" content="freelance, freelancer, responsive, rwd, web, website, ui, ux, user, interface, experience, graphic, creative, designer, director, direction, product, mobile, application, app, animation, interaction, photography, art, hire, agency, studio, consultancy, portfolio, case, study, studies, projects">
+    <meta name="author" content="Andrey Didoff">
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="robots" content="index,follow" />
+    <meta name="Copyright" content="Copyright ©2015-2022, Andrey Didoff" />
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <meta property="og:title" content="Andrey Didoff - Front-end Engineer">
+    <meta property="og:description" content="I develop unique and functional digital products and websites. I have been working since 2010 in the development and design area as a technical leader and freelance web designer. I have great knowledge in VUE, React, JavaScript, Tailwind, CSS3/Sass, HTML5, PHP, Laravel, SOAP and REST.">
+    <meta property="og:image" content="https://www.andreydidoff.com.br/assets/img/certification-share.png">
+    <meta property="og:url" content="https://www.andreydidoff.com.br">
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://www.andreydidoff.com.br/assets/img/certification-share-twitter.png">
+    <meta property="og:site_name" content="Andrey Didoff - Front-end Engineer">
+    <meta name="twitter:image:alt" content="I develop unique and functional digital products and websites. I have been working since 2010 in the development and design area as a technical leader and freelance web designer. I have great knowledge in VUE, React, JavaScript, Tailwind, CSS3/Sass, HTML5, PHP, Laravel, SOAP and REST.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#41b883">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
+
+    <meta name="apple-mobile-web-app-title" content="Andrey Didoff - Front-end Engineer">
+    <meta name="application-name" content="Andrey Didoff - Front-end Engineer">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="msapplication-TileColor" content="#eaeaea">
+    <meta name="theme-color" content="#7abc9f">
+
+    <link href="/assets/css/global.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="preload" href="/Assets/font-awesome/css/font-awesome.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href='https://fonts.googleapis.com/css?family=Roboto:400,300' as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href='https://fonts.googleapis.com/css?family=Raleway:900' as="style" onload="this.rel='stylesheet'">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-87802351-1"></script>
+
+</head>
+<body>
+    <div class="page">
+        <h1>Home do Site - Teste</h1>
+
+        <div class="battery"></div>
+        <div class="geolocation"></div>
+        <div class="accelerometer">
+            <span class="accelerometer__x"></span>
+            <span class="accelerometer__y"></span>
+            <span class="accelerometer__z"></span>
+        </div>
+        <div class="vibrate"></div>
+        <div class="ambient-light"></div>
+        <div class="notification"></div>
+        <div class="device-orientation"></div>
+        <div class="device-connection">
+            <div class="text"></div>
+            <div class="downlink"></div>
+            <div class="effectiveType"></div>
+            <div class="rtt"></div>
+            <div class="saveData"></div>
+        </div>
+
+        <button class="vibrate__button" onclick="vibrate()">Vibrar dispositivo</button>
+        <button class="geolocation__button" onclick="geolocation()">Pegar localização</button>
+        <button class="ambient-light__button" onclick="ambient_light()">Pegar iluminação</button>
+        <button class="notification__button" onclick="notification()">Abrir Notificação</button>
+
+    </div>
+    <footer>Desenvolvido por Andrey Didoff &nbsp; <small>v 1.7.0</small></footer>
+
+    <link href="/assets/css/home.min.css" rel="stylesheet" type="text/css" />
+    <script src="/assets/js/global.min.js"></script>
+    <script src="/assets/js/home.min.js"></script>
+    <script>
+        // Test battery
+        navigator.getBattery().then(function(battery) {
+            const battery_content = document.querySelector('.battery');
+            battery.addEventListener('levelchange', function() {
+                battery_content.innerHTML = `Você está com ${(battery.level*100)}% de bateria!`;
+            })
+            battery_content.innerHTML = `Você está com ${(battery.level*100)}% de bateria!`;
+            battery_content.classList.add('active');
+        });
+
+        // Test vibrate
+        function vibrate(){
+            const vibrate_content = document.querySelector('.vibrate')
+            vibrate_content.innerHTML = `Vibrou!`;
+            vibrate_content.classList.add('active');
+            navigator.vibrate(200); // vibrate for 200ms
+            navigator.vibrate([100,30,100,30,100,30,200,30,200,30,200,30,100,30,100,30,100]); // Vibrate 'SOS' in Morse.
+        }
+
+        // Test Geolocation
+        function geolocation(){
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+            const geolocation_content = document.querySelector('.geolocation')
+            const successCallback = (position) => {
+                const crd = position.coords;
+                geolocation_content.innerHTML = `Latitude : ${crd.latitude}<br>Longitude: ${crd.longitude}<br>More or less ${crd.accuracy} meters.`;
+                geolocation_content.classList.add('active');
+            }
+            const errorCallback = (error) => {
+                geolocation_content.innerHTML = `ERROR(${error.code}): ${error.message}`;
+                geolocation_content.classList.add('active');
+            }
+            navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+        }
+
+        // Test Aceleration
+        const acl = new Accelerometer({ frequency: 60 });
+        acl.addEventListener("reading", () => {
+            document.querySelector('.accelerometer').classList.add('active');
+            document.querySelector('.accelerometer__x').innerHTML = `Aceleração no eixo X é ${acl.x}`;
+            document.querySelector('.accelerometer__y').innerHTML = `Aceleração no eixo Y é ${acl.y}`;
+            document.querySelector('.accelerometer__z').innerHTML = `Aceleração no eixo Z é ${acl.z}`;
+        });
+
+        acl.start();
+
+        // Test ambient-light-sensor
+        function ambient_light(){
+            const ambient_light_content = document.querySelector('.ambient-light')
+
+            const als = new AmbientLightSensor({frequency: 20});
+            als.addEventListener('activate', () => ambient_light_content.innerHTML = 'Ready to measure EV.');
+            als.addEventListener('error', event => ambient_light_content.innerHTML = `Error: ${event.error.name}`);
+            als.addEventListener('reading', () => {
+                // Defaut ISO value.
+                const ISO = 100;
+                // Incident-light calibration constant.
+                const C = 250;
+
+                let EV = Math.round(Math.log2((als.illuminance * ISO) / C));
+                ambient_light_content.innerHTML = `Exposure Value (EV) is: ${EV}`;
+                ambient_light_content.classList.add('active');
+            });
+
+            als.start();
+        }
+
+        // Test notification
+        let granted = null;
+        async function notification(){
+            if(granted === null){
+                if (await Notification.permission === 'granted') {
+                    granted = true;
+                } else if (await Notification.permission !== 'denied') {
+                    let permission = await Notification.requestPermission();
+                    granted = permission === 'granted' ? true : false;
+                }
+            }
+
+            const showNotification = () => {
+                // create a new notification
+                const notification = new Notification('JavaScript Notification API', {
+                    body: 'This is a JavaScript Notification API demo',
+                    vibrate: true
+                });
+                
+                // close the notification after 10 seconds
+                setTimeout(() => {
+                    notification.close();
+                }, 10 * 1000);
+            }
+
+            const showError = () => {
+                const notification_content = document.querySelector('.notification');
+                notification_content.innerHTML = 'You blocked the notifications';
+                notification_content.classList.add('active');
+            }
+
+            granted ? showNotification() : showError();
+        }
+    
+        const device_orientation_content = document.querySelector('.device-orientation')
+        window.addEventListener('deviceorientation', (event) => {
+            device_orientation_content.innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}`;
+            device_orientation_content.classList.add('active');
+        });
+
+        let type = navigator.connection.effectiveType;
+
+
+        const device_connection_content = document.querySelector('.device-connection')
+        function updateConnectionStatus() {
+            device_connection_content.querySelector('.text').innerHTML = `Connection type changed from ${type} to ${navigator.connection.effectiveType}`;
+            type = navigator.connection.effectiveType;
+            device_connection_content.querySelector('.downlink').innerHTML = `Downlink = ${navigator.connection.downlink}`;
+            device_connection_content.querySelector('.effectiveType').innerHTML = `effectiveType = ${navigator.connection.effectiveType}`;
+            device_connection_content.querySelector('.rtt').innerHTML = `rtt = ${navigator.connection.rtt}`;
+            device_connection_content.querySelector('.saveData').innerHTML = `saveData = ${navigator.connection.saveData}`;
+            device_connection_content.classList.add('active');
+        }
+        updateConnectionStatus();
+        navigator.connection.addEventListener('change', updateConnectionStatus);
+
+    </script>
+    <style>
+        *{border:0;padding:0;margin:0;}
+        html,body{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;height:100%;}
+        .page{display:flex;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;}
+        footer{width:100%;text-align:center;height:20px;position:fixed;bottom:0}
+        h1{margin-bottom:40px;}
+        .page div.active, .page button{margin-bottom: 20px}
+        .accelerometer{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+        button{background:rgb(11, 174, 182);padding:10px 40px;border-radius:8px;color:#FFf}
+    </style>
+</body>
+</html>
